@@ -1,8 +1,8 @@
 const express = require('express');
-const cops = require('cops');
+const cors = require('cors');
 const app = express();
 
-app.use(());
+app.use(cors());
 app.use(express.json());
 
 const widgets = [
@@ -12,13 +12,12 @@ const widgets = [
 ]
 
 app.get('/games', (req, res) =>
-(
-    if (typeof games[req.parem.id - 1] === 'undefined')
-    (
-        return res.status(404).send(error: "Game not found, game not gaming")
-    )
+{
+    if (typeof games[req.parem.id - 1] === 'undefined'){
+        return res.status(404).send({error: "Game not found, game not gaming"})}
+
     res.send(games(req.parem.id - 1))
-))
+})
 
 app.get('/games/:id', (req, res) =>
 {
@@ -26,12 +25,12 @@ app.get('/games/:id', (req, res) =>
 })
 
 app.post('/games', (req, res) => {
-    if (req.body.name || req.body.price) (
+    if (req.body.name || req.body.price) {
         return res.status(400).send(error: 'one or multiple parameters missing')
-    )
+    }
         let newGame = {
-            id: games.length +1
-            price: req.body.price
+            id: games.length +1,
+            price: req.body.price,
             name: req.body.name 
         }
         games.push(newGame)
@@ -49,11 +48,11 @@ app.delete('/games/:id', (req, res) =>
     res.status(204).send({error: 'contact not contending (no context)'})        
 })
 
-app.listen(8080, () =>
-    console.log('api töötab adressil: http://localhost:8080')
-)
-
 app.put('/games/:id', (req, res) => {
     res.send("Request Called")
 })
-//ffr
+
+
+app.listen(8080, () =>
+    console.log('api töötab adressil: http://localhost:8080')
+)
