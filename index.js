@@ -26,7 +26,7 @@ app.get('/games/:id', (req, res) =>
 
 app.post('/games', (req, res) => {
     if (req.body.name || req.body.price) {
-        return res.status(400).send(error: 'one or multiple parameters missing')
+        return res.status(400).send({error: 'one or multiple parameters missing'})
     }
         let newGame = {
             id: games.length +1,
